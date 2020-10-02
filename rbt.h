@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 #ifndef RBT_H
 #define RBT_H
@@ -15,13 +16,15 @@ class RedBlackTree {
     public: 
         RedBlackTree();
 
+        RedBlackTree(const RedBlackTree &old);
+
         Node* create_node(Node* parent, const int& entry);
 
-        string ToInfixString() {string output; return ToInfixStringp(root, output); };
+        string ToInfixString() {string output; return ToInfixStringp(root, output);}
         
-        string ToPrefixString() {string output; return ToPrefixStringp(root, output); };
+        string ToPrefixString() {string output; return ToPrefixStringp(root, output);}
         
-        string ToPostfixString() {string output; return ToPostfixStringp(root, output); };
+        string ToPostfixString() {string output; return ToPostfixStringp(root, output);}
 
         void preorder(Node* node);
 
@@ -30,8 +33,8 @@ class RedBlackTree {
         void postorder(Node* node);
 
         bool Contains(int entry);
-
-        bool containshelper(Node* node, int entry);
+        
+        vector<int> tree_vector(Node* node, vector<int> &output);
 
         size_t Size() {return numItems;}
 

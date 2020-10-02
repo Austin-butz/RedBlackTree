@@ -1,6 +1,7 @@
 #include <cassert>  //for assert
 #include <iomanip>  //for setw
 #include <iostream> //for cout
+#include <vector> //for tree_array()
 #include "rbt.h"
 
 using namespace std;
@@ -25,6 +26,25 @@ Node* RedBlackTree::create_node(Node* parent, const int& entry)
     result_ptr->color = 1;
     result_ptr->parent = parent;
     return result_ptr;
+}
+
+vector<int> RedBlackTree::tree_vector(Node* node, vector<int> &output) {
+    if (node != nullnode)
+    {
+        tree_vector(node->left, output);
+        output.push_back(node->data);
+        tree_vector(node->right, output);
+    }
+    return output;  
+}
+
+RedBlackTree::RedBlackTree(const RedBlackTree &old) {
+  root = old.root;
+  vector<int> temp;
+  temp = tree_vector(old.root, temp);
+  for (size_t i = 0; i < temp.size(); i++) {
+    this->Insert(temp[i]);
+  }
 }
 
 string RedBlackTree::ToPostfixStringp(Node* node, string &output)
@@ -212,19 +232,12 @@ int RedBlackTree::GetMin() {
   return node->data;  
 }
 
-bool RedBlackTree::containshelper(Node* node, int entry) {
-  if (node->left == nullptr && node->right == nullptr) return false;
-  else if (node->data == entry) {
-    return true;
-  }
-  else {
-    containshelper(node->left, entry);
-    containshelper(node->right, entry);
-  }
-}
-
 bool RedBlackTree::Contains(int entry) {
-  containshelper(root, entry);
+  string check = ToPostfixString();
+  string find = to_string(entry);
+  find = find + ",";
+  if (check.find(find) > check.size()) return false;
+  else return true;
 }
 
 int main() {
@@ -242,5 +255,6 @@ int main() {
   cout << "Postfix: " << rbt.ToPostfixString() << endl;
   cout << "Prefix: " << rbt.ToPrefixString() << endl;
   cout << "Infix: " << rbt.ToInfixString() << endl;
+  cout << "Contains 25: " << rbt.Contains(25) << endl;
 }
 
