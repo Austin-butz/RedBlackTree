@@ -29,7 +29,7 @@ class RedBlackTree {
 
         void postorder(Node* node);
 
-        size_t size() {return numItems;}
+        size_t Size() {return numItems;}
 
         void printtreehelper(Node* node, size_t depth);
 
@@ -45,7 +45,7 @@ class RedBlackTree {
 
         int GetMax();
 
-        void insert(int Target);
+        void Insert(int Target);
     
     private:
         unsigned long long int numItems;

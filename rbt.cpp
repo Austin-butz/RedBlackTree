@@ -159,7 +159,7 @@ void RedBlackTree::sorttree(Node* input) {
     input->parent = tempnode;
   }
 
-  void RedBlackTree::insert(int key) {
+  void RedBlackTree::Insert(int key) {
     numItems += 1;
     Node* node = new Node;
     node->color = 1;
@@ -214,16 +214,16 @@ int RedBlackTree::GetMin() {
 
 int main() {
   RedBlackTree rbt = RedBlackTree();
-  rbt.insert(30);
-  rbt.insert(15);
-  rbt.insert(45);
-  rbt.insert(10);
-  rbt.insert(25);
-  rbt.insert(7);
-  rbt.insert(5);
+  rbt.Insert(30);
+  rbt.Insert(15);
+  rbt.Insert(45);
+  rbt.Insert(10);
+  rbt.Insert(25);
+  rbt.Insert(7);
+  rbt.Insert(5);
   rbt.printTree();
   cout << endl << endl;
-  cout << "size: " << rbt.size() << endl;
+  cout << "size: " << rbt.Size() << endl;
   cout << "Postfix: " << rbt.ToPostfixString() << endl;
   cout << "Prefix: " << rbt.ToPrefixString() << endl;
   cout << "Infix: " << rbt.ToInfixString() << endl;
