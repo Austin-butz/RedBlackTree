@@ -158,9 +158,7 @@ void RedBlackTree::sorttree(Node* input) {
   void RedBlackTree::leftrotate(Node* input) {
     Node* tempnode = input->right;
     input->right = tempnode->left;
-    if (tempnode->left != nullnode) {
-      tempnode->left->parent = input;
-    }
+    if (tempnode->left != nullnode) tempnode->left->parent = input;
     tempnode->parent = input->parent;
     if (input->parent == nullptr) root = tempnode;
     else if (input == input->parent->left) input->parent->left = tempnode;
@@ -229,7 +227,6 @@ bool RedBlackTree::Contains(int entry) {
   if (check.find(find) > check.size()) return false;
   else return true;
 }
-
 int main() {
   RedBlackTree rbt = RedBlackTree();
   rbt.Insert(30);
