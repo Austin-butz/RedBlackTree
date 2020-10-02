@@ -162,13 +162,9 @@ void RedBlackTree::sorttree(Node* input) {
       tempnode->left->parent = input;
     }
     tempnode->parent = input->parent;
-    if (input->parent == nullptr) {
-      root = tempnode;
-    } else if (input == input->parent->left) {
-      input->parent->left = tempnode;
-    } else {
-      input->parent->right = tempnode;
-    }
+    if (input->parent == nullptr) root = tempnode;
+    else if (input == input->parent->left) input->parent->left = tempnode;
+    else input->parent->right = tempnode;
     tempnode->left = input;
     input->parent = tempnode;
   }
