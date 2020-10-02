@@ -146,17 +146,11 @@ void RedBlackTree::sorttree(Node* input) {
   void RedBlackTree::rightrotate(Node* input) {
     Node* tempnode = input->left;
     input->left = tempnode->right;
-    if (tempnode->right != nullnode) {
-      tempnode->right->parent = input;
-    }
+    if (tempnode->right != nullnode) tempnode->right->parent = input;
     tempnode->parent = input->parent;
-    if (input->parent == nullptr) {
-      root = tempnode;
-    } else if (input == input->parent->right) {
-      input->parent->right = tempnode;
-    } else {
-      input->parent->left = tempnode;
-    }
+    if (input->parent == nullptr) root = tempnode;
+    else if (input == input->parent->right) input->parent->right = tempnode;
+    else input->parent->left = tempnode;
     tempnode->right = input;
     input->parent = tempnode;
   }
