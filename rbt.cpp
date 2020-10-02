@@ -31,9 +31,9 @@ Node* RedBlackTree::create_node(Node* parent, const int& entry)
 vector<int> RedBlackTree::tree_vector(Node* node, vector<int> &output) {
     if (node != nullnode)
     {
-        tree_vector(node->left, output);
+        if (node->left != nullnode) tree_vector(node->left, output);
         output.push_back(node->data);
-        tree_vector(node->right, output);
+        if (node->right != nullnode) tree_vector(node->right, output);
     }
     return output;  
 }
