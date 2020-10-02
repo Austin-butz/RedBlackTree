@@ -212,6 +212,21 @@ int RedBlackTree::GetMin() {
   return node->data;  
 }
 
+bool RedBlackTree::containshelper(Node* node, int entry) {
+  if (node->left == nullptr && node->right == nullptr) return false;
+  else if (node->data == entry) {
+    return true;
+  }
+  else {
+    containshelper(node->left, entry);
+    containshelper(node->right, entry);
+  }
+}
+
+bool RedBlackTree::Contains(int entry) {
+  containshelper(root, entry);
+}
+
 int main() {
   RedBlackTree rbt = RedBlackTree();
   rbt.Insert(30);

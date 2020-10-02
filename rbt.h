@@ -29,6 +29,10 @@ class RedBlackTree {
 
         void postorder(Node* node);
 
+        bool Contains(int entry);
+
+        bool containshelper(Node* node, int entry);
+
         size_t Size() {return numItems;}
 
         void printtreehelper(Node* node, size_t depth);
