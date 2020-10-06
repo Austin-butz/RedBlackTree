@@ -208,10 +208,13 @@ string RedBlackTree::ToPostfixStringp(Node* node, string &output)
 {
     if (node != nullnode)
     {
-        ToPostfixStringp(node->left, output);
-        ToPostfixStringp(node->right, output);
-        output = output + to_string(node->data);
-        output = output + ", ";
+      ToPostfixStringp(node->left, output);
+      ToPostfixStringp(node->right, output);
+      output = output + " ";
+      if (node->color == 0) output = output + "B";
+      else output = output + "R";
+      output = output + to_string(node->data);
+      output = output + " ";
     }
     return output;
 }
@@ -220,10 +223,13 @@ string RedBlackTree::ToInfixStringp(Node* node, string &output)
 {
     if (node != nullnode)
     {
-        ToInfixStringp(node->left, output);
-        output = output + to_string(node->data);
-        output = output + ", ";
-        ToInfixStringp(node->right, output);
+      ToInfixStringp(node->left, output);
+      output = output + " ";
+      if (node->color == 0) output = output + "B";
+      else output = output + "R";
+      output = output + to_string(node->data);
+      output = output + " ";
+      ToInfixStringp(node->right, output);
     }
     return output;
 }
@@ -232,10 +238,13 @@ string RedBlackTree::ToPrefixStringp(Node* node, string &output)
 {
     if (node != nullnode)
     {
-        output = output + to_string(node->data);
-        output = output + ", ";
-        ToPrefixStringp(node->left, output);
-        ToPrefixStringp(node->right, output);
+      output = output + " ";
+      if (node->color == 0) output = output + "B";
+      else output = output + "R";
+      output = output + to_string(node->data);
+      output = output + " ";
+      ToPrefixStringp(node->left, output);
+      ToPrefixStringp(node->right, output);
     }
     return output;
 }

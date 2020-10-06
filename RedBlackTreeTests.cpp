@@ -15,12 +15,12 @@ int main() {
   rbt.Insert(5);
   rbt.printTree();
   cout << endl << endl;
-  /*cout << "size: " << rbt.Size() << endl;
+  cout << "size: " << rbt.Size() << endl;
   cout << "Postfix: " << rbt.ToPostfixString() << endl;
   cout << "Prefix: " << rbt.ToPrefixString() << endl;
   cout << "Infix: " << rbt.ToInfixString() << endl;
   cout << "Contains 25: " << rbt.Contains(25) << endl;
-  cout << "Deleting" << endl;
+  /*cout << "Deleting" << endl;
   rbt.deletenode(15);
   rbt.deletenode(7);
   rbt.deletenode(17);
@@ -29,9 +29,9 @@ int main() {
   rbt.deletenode(5);
   rbt.deletenode(30);
   cout << "Done Deleting" << endl;
-  cout << rbt.ToInfixString() << endl;*/
+  cout << rbt.ToInfixString() << endl;
   RedBlackTree rbt2 = RedBlackTree(rbt);
-  rbt2.printTree();
+  rbt2.printTree();*/
   return 0;
 
   /*const int N = 3700000;
