@@ -19,7 +19,7 @@ int main() {
   cout << "Postfix: " << rbt.ToPostfixString() << endl;
   cout << "Prefix: " << rbt.ToPrefixString() << endl;
   cout << "Infix: " << rbt.ToInfixString() << endl;
-  cout << "Contains 25: " << rbt.Contains(25) << endl;
+  cout << "Contains 17: " << rbt.Contains(17) << endl;
   /*cout << "Deleting" << endl;
   rbt.deletenode(15);
   rbt.deletenode(7);

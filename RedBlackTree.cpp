@@ -275,7 +275,8 @@ void RedBlackTree::sorttree(Node* input) {
           input->parent->color = 0;
           input->parent->parent->color = 1;
           input = input->parent->parent;
-        } else {
+        } 
+        else {
           if (input == input->parent->left) {
             input = input->parent;
             rightrotate(input);
@@ -284,7 +285,8 @@ void RedBlackTree::sorttree(Node* input) {
           input->parent->parent->color = 1;
           leftrotate(input->parent->parent);
         }
-      } else {
+      } 
+      else {
         tempnode = input->parent->parent->right;
 
       if (tempnode->color == 1) {
@@ -343,30 +345,29 @@ void RedBlackTree::sorttree(Node* input) {
     node->data = key;
     Node* node2 = nullptr;
     Node* node3 = root;
-
     while (node3 != nullnode) {
       node2 = node3;
       if (node->data < node3->data) {
         node3 = node3->left;
-      } else {
+      } 
+      else {
         node3 = node3->right;
       }
     }
-
     node->parent = node2;
     if (node2 == nullptr) {
       root = node;
-    } else if (node->data < node2->data) {
+    } 
+    else if (node->data < node2->data) {
       node2->left = node;
-    } else {
+    } 
+    else {
       node2->right = node;
     }
-
     if (node->parent == nullptr) {
       node->color = 0;
       return;
     }
-    
     sorttree(node);
   }
 
@@ -389,7 +390,6 @@ int RedBlackTree::GetMin() {
 bool RedBlackTree::Contains(int entry) {
   string check = ToPostfixString();
   string find = to_string(entry);
-  find = find + ",";
   if (check.find(find) > check.size()) return false;
   else return true;
 }
