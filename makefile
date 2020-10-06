@@ -1,2 +1,2 @@
 all: 
-	g++ rbt.cpp -o run
+	g++ RedBlackTreeTests.cpp RedBlackTree.cpp -o rbt-tests
