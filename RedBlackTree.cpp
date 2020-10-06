@@ -32,7 +32,6 @@ RedBlackTree::~RedBlackTree() {
   vector<int> temp;
   tree_vector(root, temp);
   for (int i = 0; i < temp.size(); i++) deletenode(temp[i]);
-  cout << "done" << endl << endl << endl;
 }
 
 void RedBlackTree::tree_vector(Node* node, vector<int> &output) {
@@ -70,20 +69,15 @@ Node* RedBlackTree::findsibling(Node* input) {
 }
 
 Node* RedBlackTree::replacement(Node* input) {
-  cout << "Start Replacement" << endl;
   if (input->left != nullnode and input->right != nullnode) {
-    cout << "Input has 2 childeren" << endl;
     Node* temp = input->right;
-    cout << (temp->left != nullnode) << endl;
     while (temp->left != nullnode) temp = temp->left;
     return temp;
   }
   else if (input->left == nullnode && input->right == nullnode) {
-    cout << "Input has no childeren" << endl;
     return nullptr;
   }
   else {
-    cout << "Input has 1 child" << endl;
     if (input->left == nullnode) return input->right;
     else return input->left;
   }
@@ -140,75 +134,54 @@ void RedBlackTree::fixdoubleblack(Node* input) {
 }
 
 void RedBlackTree::deletenode(int input) {//When doing my speed test I got a duration of 0 for every deletion, meaning this program is incredibly fast
-cout << "Printing tree" << endl;
-  printTree();
-  cout << "Start delete " << input << endl;
-  cout << "Root " << root->data << endl;
   Node* current = root;
   Node* parent;
-  cout << "Starting While" << endl;
   while (current->data != input) {
-    cout << "while" << endl;
     parent = current;
     if (input > current->data) current = current->right;
     else current = current->left;
   }
-  cout << "Set current " << current->data << endl;
   Node* replacement = this->replacement(current);
-  cout << "Set replacement" << endl;
   bool doubleblack = ((replacement == nullptr || replacement->color == 0) && current->color == 0);
   if (replacement == nullptr) {
-    cout << "Current has no childeren" << endl;
     if (current == root) root = nullptr;
     else {
       if (doubleblack) {
-        cout << "Double black" << endl; 
         fixdoubleblack(current);
         }
       else if (findsibling(current) != nullnode && findsibling(current) != nullptr) {
-        cout << "Current has sibling" << endl;
         findsibling(current)->color = 1;
       }
       if (findsibling(current) == parent->left) {
         parent->right = nullnode;
-        cout << "left " << endl;// << parent->left->data << endl;
       }
       else {
         parent->left = nullnode;
-        cout << "Right " << endl;// << parent->right->data << endl;
       }
     }
     delete current;
-    //cout << (root->left->left->left == current) << endl;
     return;
   }
   if (current->left == nullnode || current->right == nullnode) {
-    cout << "Current has 1 child" << endl;
     if (current->data == root->data) {
-      cout << "if" << endl;
       current->data = replacement->data;
       current->left = nullnode;
       current->right = nullnode;
       delete replacement;
     }
     else {
-      cout << "else" << endl;
-      cout << "Replacement data = " << replacement->data << endl;
       if (current->parent->left = current) parent->left = replacement;
       else parent->right = replacement;
       delete current;
       replacement->parent = parent;
       if (doubleblack) {
-        cout << "Double black" << endl;
         fixdoubleblack(replacement);
       }
       else replacement->color = 0;
     }
     return;
   }
-  cout << "Current has 2 childeren" << endl;
   if (replacement->left == nullnode && replacement->right == nullnode) {
-    cout << "Replacement is leaf" << endl;
     int temp = current->data;
     current->data = replacement->data;
     replacement->data = temp;
@@ -352,7 +325,6 @@ void RedBlackTree::sorttree(Node* input) {
   }
 
   void RedBlackTree::Insert(int key) {//When doing my speed test I got a duration of 0 for every insertion, meaning this program is incredibly fast
-  //cout << "start" << endl;
     numItems += 1;
     Node* node = new Node;
     node->color = 1;
@@ -362,7 +334,6 @@ void RedBlackTree::sorttree(Node* input) {
     node->data = key;
     Node* node2 = nullptr;
     Node* node3 = root;
-    //cout << "made node" << endl;
 
     while (node3 != nullnode) {
       node2 = node3;
@@ -372,7 +343,6 @@ void RedBlackTree::sorttree(Node* input) {
         node3 = node3->right;
       }
     }
-    //cout << "found place" << endl;
 
     node->parent = node2;
     if (node2 == nullptr) {
